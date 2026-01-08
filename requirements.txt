@@ -1,0 +1,26 @@
+fastapi
+uvicorn[standard]
+
+# Database & ORM
+sqlmodel
+sqlalchemy
+
+# Data validation
+pydantic
+
+# AI / LLM
+openai
+
+# NLP & sentiment
+textblob
+
+# Vector similarity / embeddings (if used)
+numpy
+scikit-learn
+
+# Utilities
+python-dotenv
+requests
+
+
+sentence-transformers

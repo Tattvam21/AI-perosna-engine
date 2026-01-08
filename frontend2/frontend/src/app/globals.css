@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+pre {
+  background: #020617;
+  border-radius: 12px;
+  padding: 16px;
+  overflow-x: auto;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+
+@keyframes floatSlow {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(60px, 80px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes floatMedium {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-80px, 50px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes floatFast {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(50px, -70px); }
+  100% { transform: translate(0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}
