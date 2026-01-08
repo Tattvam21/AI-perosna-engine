@@ -5,7 +5,7 @@ This project is focused on **AI systems engineering**, not UI or prompt-only cha
 
 ---
 
-## 🚀 Project Overview
+## Project Overview
 
 The **AI Persona Engine** enables multiple AI personas to maintain distinct identities, memories, and evolving behaviors across conversations.
 
@@ -20,9 +20,9 @@ The system is designed to mirror how **real-world conversational AI systems** ar
 
 ---
 
-## 🎯 Core Capabilities
+## Core Capabilities
 
-### 🧩 Persona Architecture
+### Persona Architecture
 
 * Multiple personas with independent:
 
@@ -31,7 +31,7 @@ The system is designed to mirror how **real-world conversational AI systems** ar
   * Conversation history
 * Persona-specific prompts generated dynamically
 
-### 🧠 Memory System
+### Memory System
 
 * **Short-term memory**
 
@@ -43,7 +43,7 @@ The system is designed to mirror how **real-world conversational AI systems** ar
 * Automatic detection of important user facts
 * Memory injected as silent context (not instructions)
 
-### 🔄 Adaptive Behavior Engine
+### Adaptive Behavior Engine
 
 * Tracks interaction statistics per persona:
 
@@ -57,14 +57,14 @@ The system is designed to mirror how **real-world conversational AI systems** ar
 * Trait values clamped for stability
 * Behavior changes gradually over time (agentic behavior)
 
-### 🛡️ Safety & Consistency Layer
+### Safety & Consistency Layer
 
 * Rule-based safety filter
 * Blocks unsafe user intent
 * Prevents saving AI-invented facts as memory
 * Separates user-provided facts from system content
 
-### 🗄️ Persistent Storage
+### Persistent Storage
 
 * SQLite database for:
 
@@ -75,7 +75,7 @@ The system is designed to mirror how **real-world conversational AI systems** ar
 
 ---
 
-## 🧠 System Design
+## System Design
 
 ```
 User
@@ -93,7 +93,7 @@ FastAPI Backend
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 * **Python 3.10+**
 * **FastAPI** — API framework
@@ -173,7 +173,7 @@ uvicorn app:app --reload --port 8000
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Health Check
 
@@ -212,7 +212,7 @@ GET /persona_state/{persona_id}
 
 ---
 
-## 🧪 Demonstrated Behaviors
+## Demonstrated Behaviors
 
 * Remembers user-provided facts across sessions
 * Adapts tone based on conversation sentiment
@@ -222,7 +222,7 @@ GET /persona_state/{persona_id}
 
 ---
 
-## 🧠 Why This Project Is Important
+## Why This Project Is Important
 
 This project demonstrates:
 
@@ -236,7 +236,7 @@ It goes beyond prompt engineering into **production-style AI system design**.
 
 ---
 
-## 📌 Future Improvements
+## Future Improvements
 
 * Memory summarization
 * External document RAG
@@ -245,13 +245,8 @@ It goes beyond prompt engineering into **production-style AI system design**.
 
 ---
 
-## 📄 License
-
-MIT License
-
----
 
 ## 👤 Author
 
-**Tattvam**
+**Tattvam Kajavadara**
 AI Systems & Backend Engineering
