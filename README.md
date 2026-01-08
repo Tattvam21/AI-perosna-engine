@@ -1,70 +1,257 @@
-# 🧠 AI Persona Engine
+# 🧠 AI Persona Engine — Agentic Conversational AI Backend
 
-A modern full-stack AI chat application where users can interact with **multiple AI personas**, each maintaining its own memory, personality, and conversation history.
-
-Built with a focus on **clean architecture, smooth UX, and real AI system behavior** — not just a chat UI.
-
----
-
-## ✨ Features
-
-- 🔁 **Multiple AI Personas**
-  - Each persona has its own chat history, memory, and adaptive state
-- 🧠 **Context-Aware Responses**
-  - Short-term conversation memory
-  - Long-term memory storage for important user information
-- 🎭 **Persona Adaptation**
-  - Persona behavior adapts based on sentiment and interaction patterns
-- 💬 **Modern Chat UI**
-  - Animated message bubbles
-  - Persona-based styling
-  - Smooth transitions using Framer Motion
-- 🧾 **Markdown & Code Rendering**
-  - GitHub-style markdown support
-  - Syntax-highlighted code blocks
-  - Optimized handling of large code snippets
-- 🛡️ **Safety & Validation**
-  - User intent safety checks
-  - Controlled output handling
+A **stateful, persona-driven AI backend system** that demonstrates agentic behavior through memory, sentiment analysis, and rule-based personality adaptation.
+This project is focused on **AI systems engineering**, not UI or prompt-only chatbots.
 
 ---
 
-## 🏗️ Tech Stack
+## 🚀 Project Overview
 
-### Frontend
-- **Next.js (App Router)**
-- **React + TypeScript**
-- **Tailwind CSS**
-- **Framer Motion**
-- **React Markdown + Highlight.js**
+The **AI Persona Engine** enables multiple AI personas to maintain distinct identities, memories, and evolving behaviors across conversations.
 
-### Backend
-- **FastAPI**
-- **SQLModel + SQLite**
-- **LLM API Integration**
-- **Custom Persona Prompt System**
-- **Memory & Sentiment Services**
+Each persona:
+
+* Remembers user-provided facts
+* Adapts tone over time
+* Maintains safety and consistency
+* Operates independently from other personas
+
+The system is designed to mirror how **real-world conversational AI systems** are built and maintained.
 
 ---
 
-## 📂 Project Structure
+## 🎯 Core Capabilities
 
-```text
-frontend/
- ├─ src/
- │  ├─ app/
- │  ├─ components/
- │  │   ├─ ChatBubble.tsx
- │  │   ├─ PersonaSwitcher.tsx
- │  ├─ lib/
- │  │   └─ api.ts
- │  └─ styles/
+### 🧩 Persona Architecture
+
+* Multiple personas with independent:
+
+  * Identity (name, role, backstory)
+  * Goals and style rules
+  * Conversation history
+* Persona-specific prompts generated dynamically
+
+### 🧠 Memory System
+
+* **Short-term memory**
+
+  * Recent conversation history stored in SQLite
+* **Long-term memory**
+
+  * Semantic memory stored in ChromaDB
+  * Embedding-based retrieval using sentence transformers
+* Automatic detection of important user facts
+* Memory injected as silent context (not instructions)
+
+### 🔄 Adaptive Behavior Engine
+
+* Tracks interaction statistics per persona:
+
+  * Total messages
+  * Average sentiment
+* Rule-based trait evolution:
+
+  * Friendliness
+  * Humor
+  * Formality
+* Trait values clamped for stability
+* Behavior changes gradually over time (agentic behavior)
+
+### 🛡️ Safety & Consistency Layer
+
+* Rule-based safety filter
+* Blocks unsafe user intent
+* Prevents saving AI-invented facts as memory
+* Separates user-provided facts from system content
+
+### 🗄️ Persistent Storage
+
+* SQLite database for:
+
+  * Messages
+  * Persona state
+* ChromaDB for long-term semantic memory
+* Fully local and offline-capable
+
+---
+
+## 🧠 System Design
+
+```
+User
+  ↓
+FastAPI Backend
+  ├── Persona Loader
+  ├── Sentiment Analyzer
+  ├── Adaptation Engine
+  ├── Memory Service
+  │     ├── Short-term (SQLite)
+  │     └── Long-term (ChromaDB)
+  ├── Safety Layer
+  └── LLM Client (Local LLM via Ollama)
+```
+
+---
+
+## 🛠️ Technology Stack
+
+* **Python 3.10+**
+* **FastAPI** — API framework
+* **SQLModel + SQLite** — relational persistence
+* **ChromaDB** — vector database
+* **SentenceTransformers** — semantic embeddings
+* **Ollama** — local LLM inference
+* **Pydantic** — data validation
+
+---
+
+## 📁 Repository Structure
+
+```
 backend/
- ├─ app.py
- ├─ services/
- │  ├─ persona_prompt.py
- │  ├─ memory_service.py
- │  ├─ sentiment_service.py
- │  ├─ safety_service.py
- ├─ db.py
- └─ models/
+├── app.py                     # FastAPI entry point
+├── db.py                      # Database initialization
+├── models/                    # Message models
+├── models_adaptation/         # Persona state model
+├── services/
+│   ├── llm_client.py          # LLM interface
+│   ├── persona_prompt.py      # Persona + prompt builder
+│   ├── memory_service.py      # Long-term memory logic
+│   ├── sentiment_service.py   # Sentiment analysis
+│   ├── adaptation_service.py  # Trait evolution engine
+│   ├── safety_service.py      # Safety rules
+│   └── db_service.py          # Message persistence
+├── personas/                  # Persona definitions (JSON)
+│   ├── aria.json
+│   ├── vikram.json
+│   └── neha.json
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/ai-persona-engine.git
+cd ai-persona-engine/backend
+```
+
+### 2️⃣ Create a Virtual Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4️⃣ Start Local LLM (Ollama)
+
+```bash
+ollama serve
+```
+
+Ensure the model is available:
+
+```bash
+ollama pull phi3
+```
+
+### 5️⃣ Start the Backend
+
+```bash
+uvicorn app:app --reload --port 8000
+```
+
+---
+
+## 🔌 API Endpoints
+
+### Health Check
+
+```
+GET /health
+```
+
+### Chat Endpoint
+
+```
+POST /chat
+```
+
+**Request**
+
+```json
+{
+  "persona_id": "aria",
+  "user_message": "I want to become an AI engineer"
+}
+```
+
+**Response**
+
+```json
+{
+  "reply": "That’s a great goal. Let me guide you step by step..."
+}
+```
+
+### Persona State
+
+```
+GET /persona_state/{persona_id}
+```
+
+---
+
+## 🧪 Demonstrated Behaviors
+
+* Remembers user-provided facts across sessions
+* Adapts tone based on conversation sentiment
+* Maintains separate memory per persona
+* Refuses unsafe requests safely
+* Preserves persona identity consistently
+
+---
+
+## 🧠 Why This Project Is Important
+
+This project demonstrates:
+
+* Agentic AI behavior
+* Memory-aware LLM systems
+* Stateful backend design
+* Safety-first AI engineering
+* Real-world conversational AI architecture
+
+It goes beyond prompt engineering into **production-style AI system design**.
+
+---
+
+## 📌 Future Improvements
+
+* Memory summarization
+* External document RAG
+* Multi-agent collaboration
+* Analytics and visualization tools
+
+---
+
+## 📄 License
+
+MIT License
+
+---
+
+## 👤 Author
+
+**Tattvam**
+AI Systems & Backend Engineering
